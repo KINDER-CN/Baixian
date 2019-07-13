@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.1.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.1.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.1.xsd">
+	<!-- 开启注解扫描 -->
+	<context:component-scan base-package="com.zl"></context:component-scan>
+	<!-- 开启事务注解 -->
+	<tx:annotation-driven transaction-manager="transactionManager"/>
+	<!-- 1.引入属性文件，在配置中占位使用 -->
+	<context:property-placeholder location="classpath:jdbc.properties"/>
+	<!-- 2.配置数据库连接 -->
+	<bean id="dataSources" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+		<!-- 连接池地址 -->
+		<property name="jdbcUrl" value="${jdbc.url}"></property>
+		<!-- 驱动地址 -->
+		<property name="driverClass" value="${jdbc.driver}"></property>
+		<!-- 用户名 -->
+		<property name="user" value="${jdbc.name}"></property>
+		<!-- 密码 -->
+		<property name="password" value="${jdbc.pad}"></property>
+	</bean>
+	<!-- 3.配置产生数据库连接的SqlSessionFacory对象 -->
+	<bean id="sessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<!-- 把连接池对象交给该对象 -->
+		<property name="dataSource" ref="dataSources"></property>
+		<!-- 指定mybatis配置文件的位置 -->
+		<property name="configLocation" value="classpath:SqlMapConfig.xml"></property>
+	</bean>
+	<!-- 4.由spring帮我们自动生成dao接口的实现类MapperScannerConfigurer -->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="sqlSessionFactoryBeanName" value="sessionFactory"></property>
+		<property name="basePackage" value="com.zl.dao"></property>
+	</bean>
+	<!-- 配置事务管理器 -->
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager"> 
+		<property name="dataSource" ref="dataSources"></property>
+	</bean>
+	<!-- 配置事务属性-->
+	<tx:advice id="advice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<tx:method name="*" propagation="REQUIRED"/>
+		</tx:attributes>
+	</tx:advice>
+	<!-- 配置事务切入点 -->
+	<aop:config>
+		<aop:pointcut expression="execution(* com.zl.service..*.*(..))" id="aopPointact"/>
+		<aop:advisor advice-ref="advice" pointcut-ref="aopPointact"/>
+	</aop:config>
+</beans>

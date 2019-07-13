@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zl.dao.resource.ClassOneDao">
+	 <!--二级分类表class_two级联查询一级分类表class_one -->
+	 <select id="findClassOneById" resultType="ClassOne" parameterType="int">
+	 	select * from class_one where id=#{oneid}
+	 </select>
+</mapper>

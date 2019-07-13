@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zl.dao.resource.ClassTwoDao">
+	 <!--资源单ResourcesSingle级联查询用户表user -->
+	 <resultMap type="ClassTwo" id="ClassTwos">
+	 	<id column="id" property="id"/>
+	 	<result column="twoClassNo" property="twoClassNo"/>
+	 	<result column="twoClassNnam" property="twoClassNnam"/>
+	 	<association property="classOne" column="oneid" javaType="ClassOne" select=""></association>
+	 </resultMap>
+	 <select id="findClassTwoById" resultMap="ClassTwos" parameterType="int">
+	 	select * from class_two where id=#{twoid}
+	 </select>
+</mapper>
