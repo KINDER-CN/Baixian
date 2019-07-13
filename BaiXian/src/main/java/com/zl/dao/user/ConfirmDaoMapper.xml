@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zl.dao.user.ConfirmDao">
+	<!-- 添加个人认证信息  -->
+	<insert id="addConfirm" parameterType="confirm">
+		insert into confirm(firmid,firmname,firmno,firmPic,province,city,district,address,mobileNumber,email,personUploadDate,personAudit,userID)
+			values(#{firmId},#{firmName},#{firmno},#{firmPic},#{province},#{city},#{district},#{address},#{mobileNumber},#{email},#{personUploadDate},#{personAudit},#{userID.id})
+	</insert>
+	
+	<!-- 级联查询 -->
+	<resultMap type="confirm" id="confirmByUserID">
+		<id column="id" property="id"/>
+		<result column="firmid" property="firmId"/>
+		<result column="firmname" property="firmName"/>
+		<result column="firmno" property="firmno"/>
+		<result column="firmPic" property="firmPic"/>
+		<result column="province" property="province"/>
+		<result column="city" property="city"/>
+		<result column="district" property="district"/>
+		<result column="address" property="address"/>
+		<result column="mobileNumber" property="mobileNumber"/>
+		<result column="email" property="email"/>
+		<result column="personUploadDate" property="personUploadDate"/>
+		<result column="personAudit" property="personAudit"/>
+		<association property="userID.id" column="userID" javaType="user" select="com.zl.dao.user.UserDao.queryUserByUserId"></association>
+	</resultMap>
+	
+	<!-- 根据用户会员id查询 返回公司信息 -->
+   <select id="findConfirmByUserID" resultMap="confirmByUserID">
+		select * from confirm where userID=#{userID.id}
+	</select>
+	
+	<!-- 根据企业id查询企业 -->
+	<select id="findConfirmById" parameterType="int" resultType="confirm">
+		select * from confirm where id=#{id}
+	</select>
+		
+	<!-- 更新企业信息 -->
+	<update id="updateConfirm" parameterType="confirm">
+		update confirm 
+			firmname=#{firmName},
+			firmno=#{firmno},
+			firmPic=#{firmPic},
+			province=#{province},
+			city=#{city},
+			district=#{district},
+			address=#{address},
+			mobileNumber=#{mobileNumber},
+			email=#{email},
+			personUploadDate=#{personUploadDate},
+			personAudit=#{personAudit} 
+			where id=#{id}
+			<if test="userID!=null">
+				and userID=#{userID.id}
+			</if>
+	</update>
+</mapper>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zl.dao.user.OperatingDao">
+	<!-- 添加授权运营者信息  -->
+	<insert id="addOperating" parameterType="operating">
+		insert into operating(opeID,opeName,opeJob,opePhone,opePic,companyID)
+			values(#{opeID},#{opeName},#{opeJob},#{opePhone},#{opePic},#{companyID.id})
+	</insert>
+	
+	<!-- 级联 -->
+	<resultMap type="operating" id="operatingBycompanyID">
+		<id column="id" property="id"/>
+		<result column="opeID" property="opeID"/>
+		<result column="opeName" property="opeName"/>
+		<result column="opeJob" property="opeJob"/>
+		<result column="opePhone" property="opePhone"/>
+		<result column="opePic" property="opePic"/>
+		<association property="companyID.id" column="companyID" javaType="companyInfo" select="com.zl.dao.user.CompanyInfoDao.findCompanyInfoById"></association>
+	</resultMap>
+	
+	<!-- 根据id查询  -->
+	<select id="findOperatingById" resultType="operating">
+		select * from operating where id=#{id}
+	</select>
+</mapper>
