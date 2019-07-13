@@ -3,6 +3,7 @@ package com.zl.pojo.user;
 import java.util.Date;
 
 import org.springframework.context.annotation.Scope;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Component;
 
 /**
@@ -31,6 +32,7 @@ public class CompanyInfo {
 	private String otherPic4; //其他证件4
 	private String companyOwner;  //企业法人姓名
 	private Integer companyAudit; //审核状态1,2,0
+	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date companyUploadDate; //上传日期
 	private User userID; //用户id-->外键关联user表id
 	public Integer getId() {
@@ -153,5 +155,16 @@ public class CompanyInfo {
 	public void setUserID(User userID) {
 		this.userID = userID;
 	}
+	@Override
+	public String toString() {
+		return "CompanyInfo [id=" + id + ", companyNo=" + companyNo + ", companyName=" + companyName + ", province="
+				+ province + ", city=" + city + ", district=" + district + ", address=" + address + ", businessLicense="
+				+ businessLicense + ", orgNo=" + orgNo + ", registrationPic=" + registrationPic + ", officePic="
+				+ officePic + ", permitPic=" + permitPic + ", otherPic1=" + otherPic1 + ", otherPic2=" + otherPic2
+				+ ", otherPic3=" + otherPic3 + ", otherPic4=" + otherPic4 + ", companyOwner=" + companyOwner
+				+ ", companyAudit=" + companyAudit + ", companyUploadDate=" + companyUploadDate + ", userID=" + userID
+				+ "]";
+	}
+	
 	
 }

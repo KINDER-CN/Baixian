@@ -3,7 +3,8 @@ package com.zl.dao.user;
 import com.zl.pojo.user.CompanyInfo;
 
 /**
- * 企业
+ * 企业表
+ *  -->增删查改
  */
 
 public interface CompanyInfoDao {
@@ -17,7 +18,7 @@ public interface CompanyInfoDao {
 	 * 根据用户会员id查询
 	 *   -->返回公司信息
 	 */
-	public CompanyInfo findCompanyInfoById(int userID); 
+	public CompanyInfo findCompanyInfoByUserID(int userID); 
 	
 	/**
 	 * 更新企业信息
@@ -25,5 +26,9 @@ public interface CompanyInfoDao {
 	 */
 	public int updateCompanyInfo(CompanyInfo companyInfo);
 	
+	/**
+	 * 根据id查询 企业信息
+	 */
+	public CompanyInfo findCompanyInfoById(int id);
 	
 }

@@ -5,6 +5,66 @@
 <mapper namespace="com.zl.dao.user.CompanyInfoDao">
 	<!-- 添加企业认证信息  -->
 	<insert id="addCompanyInfo" parameterType="companyInfo">
-		insert into companyinfo (companyNo,companyName,province,city,district,address,businessLicense,orgNo,registrationPic)
+		insert into companyinfo (companyNo,companyName,province,city,district,address,businessLicense,orgNo,registrationPic,officePic,permitPic,otherPic1,otherPic2,otherPic3,otherPic4,companyOwner,companyAudit,companyUploadDate,userID)
+			values(#{companyNo},#{companyName},#{province},#{city},#{district},#{address},#{businessLicense},#{orgNo},#{registrationPic},#{officePic},#{permitPic},#{otherPic1},#{otherPic2},#{otherPic3},#{otherPic4},#{companyOwner},#{companyAudit},#{companyUploadDate},#{userID.id})
 	</insert>
+	<!-- 级联查询 -->
+	<resultMap type="companyInfo" id="companyInfoByUserID">
+		<id column="id" property="id"/>
+		<result column="companyNo" property="companyNo"/>
+		<result column="companyName" property="companyName"/>
+		<result column="province" property="province"/>
+		<result column="city" property="city"/>
+		<result column="district" property="district"/>
+		<result column="address" property="address"/>
+		<result column="businessLicense" property="businessLicense"/>
+		<result column="orgNo" property="orgNo"/>
+		<result column="registrationPic" property="registrationPic"/>
+		<result column="officePic" property="officePic"/>
+		<result column="permitPic" property="permitPic"/>
+		<result column="otherPic1" property="otherPic1"/>
+		<result column="otherPic2" property="otherPic2"/>
+		<result column="otherPic3" property="otherPic3"/>
+		<result column="otherPic4" property="otherPic4"/>
+		<result column="companyOwner" property="companyOwner"/>
+		<result column="companyAudit" property="companyAudit"/>
+		<result column="companyUploadDate" property="companyUploadDate"/>
+		<association property="userID.id" column="userID" javaType="user" select="com.zl.dao.user.UserDao.queryUserByUserId"></association>
+	</resultMap>
+	
+	<!-- 根据用户会员id查询 返回公司信息 -->
+	<select id="findCompanyInfoByUserID" resultMap="companyInfoByUserID">
+		select * from companyInfo where userID=#{userID.id}
+	</select>
+	
+	<!-- 根据企业id查询企业 -->
+	<select id="findCompanyInfoById" parameterType="int" resultType="companyInfo">
+		select * from companyInfo where id=#{id}
+	</select>
+		
+	<!-- 更新企业信息 -->
+	<update id="updateCompanyInfo" parameterType="companyInfo">
+		update companyInfo 
+			companyNo=#{companyNo},
+			companyName=#{companyName},
+			province=#{province},
+			city=#{city},
+			district=#{district},
+			address=#{address},
+			businessLicense=#{businessLicense},
+			orgNo=#{orgNo},
+			registrationPic=#{registrationPic},
+			officePic=#{officePic},
+			permitPic=#{permitPic},
+			otherPic1=#{otherPic1},
+			otherPic2=#{otherPic2},
+			otherPic3=#{otherPic3},
+			otherPic4=#{otherPic4},
+			companyOwner=#{companyOwner},
+			companyAudit=#{companyAudit},
+			companyUploadDate=#{companyUploadDate} where id=#{id} 
+			<if test="userID!=null">
+				and userID=#{userID.id}
+			</if>
+	</update>
 </mapper>

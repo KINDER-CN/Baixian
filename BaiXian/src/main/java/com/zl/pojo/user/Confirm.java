@@ -1,6 +1,9 @@
 package com.zl.pojo.user;
 
+import java.util.Date;
+
 import org.springframework.context.annotation.Scope;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Component;
 
 /**
@@ -21,10 +24,10 @@ public class Confirm {
 	private String address; //详细地址
 	private String mobileNumber; //手机号
 	private String email;  //电子邮箱E-mails
-	private String personUploadDate; //上传日期
+	@DateTimeFormat(pattern="yyyy-MM-dd")
+	private Date personUploadDate; //上传日期
 	private Integer personAudit; //审核状态0,1,2
 	private User userID; //userID用户id --->外键关联user表
-	
 	public Integer getId() {
 		return id;
 	}
@@ -91,10 +94,10 @@ public class Confirm {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public String getPersonUploadDate() {
+	public Date getPersonUploadDate() {
 		return personUploadDate;
 	}
-	public void setPersonUploadDate(String personUploadDate) {
+	public void setPersonUploadDate(Date personUploadDate) {
 		this.personUploadDate = personUploadDate;
 	}
 	public Integer getPersonAudit() {
@@ -109,5 +112,14 @@ public class Confirm {
 	public void setUserID(User userID) {
 		this.userID = userID;
 	}
+	@Override
+	public String toString() {
+		return "Confirm [id=" + id + ", firmId=" + firmId + ", firmName=" + firmName + ", firmno=" + firmno
+				+ ", firmPic=" + firmPic + ", province=" + province + ", city=" + city + ", district=" + district
+				+ ", address=" + address + ", mobileNumber=" + mobileNumber + ", email=" + email + ", personUploadDate="
+				+ personUploadDate + ", personAudit=" + personAudit + ", userID=" + userID + "]";
+	}
+	
+	
 	
 }
