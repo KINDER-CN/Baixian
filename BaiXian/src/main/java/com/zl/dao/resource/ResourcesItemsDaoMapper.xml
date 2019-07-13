@@ -9,6 +9,7 @@
 	 		values 
 	 		(#{rNo},#{threeId},#{brand},#{product},#{origin},#{uploadDate},#{specifications},#{amount},#{rprice},#{rcurrency},#{rwarehouse},#{rCargo},#{note},#{ResourcesSingle.id})
 	 </insert>
+<<<<<<< HEAD
 	 <!-- 查询资源单总条数 -->
 	 <select id="findResourcesItemsRowCount" resultType="int">
 	 	select count(*) from ResourcesItems
@@ -35,4 +36,12 @@
 	 	<association property="resourcesSingle" column="singleId" javaType="ResourcesSingle" select="com.zl.dao.resource.ResourcesSingleDao.findResourcesSingleById"></association>
 	 	<association property="classThree" column="threeId" javaType="ClassThree" select="com.zl.dao.resource.ClassThreeDao.findClassThreeById"></association>
 	 </resultMap>
+=======
+	 <insert id="addResourcesSingle" parameterType="ResourcesSingle">
+	 	insert into ResourcesSingle
+	 	 (singleNo,singleNo,rphone,resourceState,uploadDate)
+	 		values 
+	 		(#{singleNo},#{user.id},#{rphone},#{resourceState},#{uploadDate})
+	 </insert>
+>>>>>>> branch 'master' of https://github.com/KINDER-CN/Baixian.git
 </mapper>	
