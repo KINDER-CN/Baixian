@@ -9,6 +9,7 @@ import com.zl.dao.resource.ResourcesItemsDao;
 import com.zl.pojo.Paging;
 import com.zl.pojo.Query;
 import com.zl.pojo.resource.ResourcesItems;
+import com.zl.pojo.resource.ResourcesSingle;
 import com.zl.resouce.service.ResourcesItemsService;
 @Service
 public class ResourcesItemsServiceImpl implements ResourcesItemsService {
@@ -19,7 +20,11 @@ public class ResourcesItemsServiceImpl implements ResourcesItemsService {
 			int result=rid.addResourcesItems(resourcesItems);
 			return result;
 		}
-
+	@Override
+	public int addResourcesSingle(ResourcesSingle resourcesSingle) {
+		int result=rid.addResourcesSingle(resourcesSingle);
+		return result;
+	}
 	@Override
 	public List<ResourcesItems> findResourcesItemsByQuery() {
 		// TODO Auto-generated method stub
@@ -37,5 +42,7 @@ public class ResourcesItemsServiceImpl implements ResourcesItemsService {
 		// TODO Auto-generated method stub
 		return 0;
 	}
+
+	
 
 }

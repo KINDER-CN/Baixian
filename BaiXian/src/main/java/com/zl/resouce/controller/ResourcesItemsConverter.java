@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.zl.pojo.resource.ResourcesItems;
+import com.zl.pojo.resource.ResourcesSingle;
 import com.zl.resouce.service.ResourcesItemsService;
 @Controller
 @RequestMapping("/res")
@@ -22,8 +23,9 @@ public class ResourcesItemsConverter {
 		return "addLib";
 	}
 	@RequestMapping(method=RequestMethod.POST)
-	public String addLib(ResourcesItems resourcesItems) throws Exception {
+	public String addLib(ResourcesItems resourcesItems,ResourcesSingle resourcesSingle) throws Exception {
 		ris.addResourcesItems(resourcesItems);
+		ris.addResourcesSingle(resourcesSingle);
 		return "redirect:/lib";
 	}
 }

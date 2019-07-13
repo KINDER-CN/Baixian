@@ -9,4 +9,10 @@
 	 		values 
 	 		(#{rNo},#{threeId},#{brand},#{product},#{origin},#{uploadDate},#{specifications},#{amount},#{rprice},#{rcurrency},#{rwarehouse},#{rCargo},#{note},#{ResourcesSingle.id})
 	 </insert>
+	 <insert id="addResourcesSingle" parameterType="ResourcesSingle">
+	 	insert into ResourcesSingle
+	 	 (singleNo,singleNo,rphone,resourceState,uploadDate)
+	 		values 
+	 		(#{singleNo},#{user.id},#{rphone},#{resourceState},#{uploadDate})
+	 </insert>
 </mapper>	
