@@ -27,7 +27,7 @@
 		<mapper resource="com/zl/dao/user/CompanyInfoDaoMapper.xml" />
 	    <mapper resource="com/zl/dao/user/ConfirmDaoMapper.xml" />
 		<mapper resource="com/zl/dao/user/OperatingDaoMapper.xml" />
-		<!-- <mapper resource="com/zl/dao/procurement/PurchaseorderDaoMapper.xml" /> -->
+		<mapper resource="com/zl/dao/procurement/PurchaseorderDaoMapper.xml" />
 		<mapper resource="com/zl/dao/user/UserDaoMapper.xml" />
 		<mapper resource="com/zl/dao/resource/ClassOneDaoMapper.xml"/>
 		<mapper resource="com/zl/dao/resource/ClassTwoDaoMapper.xml"/>
