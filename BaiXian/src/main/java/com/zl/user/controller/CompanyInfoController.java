@@ -18,7 +18,7 @@ import com.zl.user.service.CompanyInfoService;
  *   -->控制层
  */
 
-@Controller
+@Controller 
 @RequestMapping("/companyInfo")
 public class CompanyInfoController {
 	@Autowired

@@ -19,7 +19,7 @@ import com.zl.user.service.ConfirmService;
  */
 
 @Controller
-@RequestMapping("/confirm")
+@RequestMapping("/confirm") 
 public class ConfirmController {
 	@Autowired
 	private ConfirmService cs;
