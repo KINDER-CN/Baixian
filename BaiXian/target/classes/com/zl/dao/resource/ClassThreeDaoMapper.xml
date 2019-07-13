@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zl.dao.resource.ClassThreeDao">
+	 <!--资源单ResourcesSingle级联查询用户表user -->
+	 <resultMap type="ClassThree" id="ClassThrees">
+	 	<id column="id" property="id"/>
+	 	<result column="threeClassNo" property="threeClassNo"/>
+	 	<result column="threeClassNnam" property="threeClassNnam"/>
+	 	<association property="classThree" column="twoid" javaType="ClassThree" select="com.zl.dao.resource.ClassTwoDao.findClassTwoById"></association>
+	 </resultMap>
+	 <select id="findClassThreeById" resultMap="ClassThrees" parameterType="int">
+	 	select * from class_three where id=#{threeId}
+	 </select>
+</mapper>
