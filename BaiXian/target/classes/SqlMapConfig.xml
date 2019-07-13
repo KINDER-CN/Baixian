@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?> 
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<!-- 对mybatis整体的配置 -->
+	<settings>
+		<setting name="jdbcTypeForNull" value="NULL" />
+	</settings>
+	<!-- 给实体类起别名 -->
+	<typeAliases>
+		<typeAlias type="com.zl.pojo.user.CompanyInfo" alias="companyInfo" />
+		<typeAlias type="com.zl.pojo.user.Confirm" alias="confirm" />
+		<typeAlias type="com.zl.pojo.user.Operating" alias="operating" />
+		<typeAlias type="com.zl.pojo.user.User" alias="user" />
+		<typeAlias type="com.zl.pojo.procurement.Purchaseorder"
+			alias="purchaseorder" />
+	</typeAliases>
+
+	<!-- 引用mapper映射文件 -->
+	<mappers>
+		<mapper resource="com/zl/dao/user/CompanyInfoDaoMapper.xml" />
+		<mapper resource="com/zl/dao/user/ConfirmDaoMapper.xml" />
+		<mapper resource="com/zl/dao/user/OperatingDaoMapper.xml" />
+		<mapper resource="com/zl/dao/procurement/PurchaseorderDaoMapper.xml" />
+		<mapper resource="com/zl/dao/user/UserDaoMapper.xml" />
+	</mappers>
+</configuration> 
