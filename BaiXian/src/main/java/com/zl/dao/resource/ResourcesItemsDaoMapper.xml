@@ -2,11 +2,44 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.zl.dao.resource.ResourcesItemsDao">
-	 <!-- 添加 -->
+	 <!-- 添加资源物品-->
 	 <insert id="addResourcesItems" parameterType="ResourcesItems">
 	 	insert into ResourcesItems
 	 	 (rNo,threeId,brand,product,origin,uploadDate,specifications,amount,rprice,rcurrency,rwarehouse,rCargo,note,singleId)
 	 		values 
-	 		(#{rNo},#{threeId},#{brand},#{product},#{origin},#{uploadDate},#{specifications},#{amount},#{rprice},#{rcurrency},#{rwarehouse},#{rCargo},#{note},#{ResourcesSingle.id})
+	 		(#{rNo},#{threeId},#{brand},#{product},#{origin},#{uploadDate},#{specifications},#{amount},#{rprice},#{rcurrency},#{rwarehouse},#{rCargo},#{note},#{resourcesSingle.id})
+	 </insert>
+	 <!-- 查询资源单总条数 -->
+	 <select id="findResourcesItemsRowCount" resultType="int">
+	 	select count(*) from ResourcesItems
+	 </select>
+	 
+	 <!-- 资源物品单分页查询 -->
+	 <select id="findResourcesItemsByFy" parameterType="Paging" resultMap="ResourcesItem">
+	 	select * from ResourcesItems limit (#{page}-1)*#{rows}, #{rows}
+	 </select>
+	 <!-- 资源物品单级联查询资源单ResourcesSingle和三级分类表class_three -->
+	 <resultMap type="ResourcesItems" id="ResourcesItem">
+	 	<id column="id" property="id"/>
+	 	<result column="rNo" property="rNo"/>
+	 	<result column="product" property="product"/>
+	 	<result column="origin" property="origin"/>
+	 	<result column="uploadDate" property="uploadDate"/>
+	 	<result column="specifications" property="specifications"/>
+	 	<result column="amount" property="amount"/>
+	 	<result column="rprice" property="rprice"/>
+	 	<result column="rcurrency" property="rcurrency"/>
+	 	<result column="rwarehouse" property="rwarehouse"/>
+	 	<result column="rCargo" property="rCargo"/>
+	 	<result column="note" property="note"/>
+	 	<association property="resourcesSingle" column="singleId" javaType="ResourcesSingle" select="com.zl.dao.resource.ResourcesSingleDao.findResourcesSingleById"></association>
+	 	<association property="classThree" column="threeId" javaType="ClassThree" select="com.zl.dao.resource.ClassThreeDao.findClassThreeById"></association>
+	 </resultMap>
+	 <!-- 资源单 -->
+	 <insert id="addResourcesSingle" parameterType="ResourcesSingle">
+	 	insert into ResourcesSingle
+	 	 (singleNo,userID,rphone,resourceState,uploadDate)
+	 		values 
+	 		(#{singleNo},#{user.id},#{rphone},#{resourceState},#{uploadDate})
 	 </insert>
 </mapper>	
