@@ -17,6 +17,7 @@ public class ResourcesItemsServiceImpl implements ResourcesItemsService {
 	private ResourcesItemsDao rid;
 	@Override
 	public int addResourcesItems(ResourcesItems resourcesItems) {
+			System.out.println(resourcesItems);
 			int result=rid.addResourcesItems(resourcesItems);
 			return result;
 		}
