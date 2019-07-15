@@ -14,7 +14,7 @@
 		<typeAlias type="com.zl.pojo.user.User" alias="user" />
 		<typeAlias type="com.zl.pojo.procurement.Purchaseorder"
 			alias="purchaseorder" />
-		<typeAlias type="com.zl.pojo.Paging" alias="Paging"/>
+		<typeAlias type="com.zl.pojo.Paging" alias="paging"/>
 		<typeAlias type="com.zl.pojo.resource.ResourcesItems" alias="ResourcesItems"/>
 		<typeAlias type="com.zl.pojo.resource.ResourcesSingle" alias="ResourcesSingle"/>
 		<typeAlias type="com.zl.pojo.resource.ClassOne" alias="ClassOne"/>

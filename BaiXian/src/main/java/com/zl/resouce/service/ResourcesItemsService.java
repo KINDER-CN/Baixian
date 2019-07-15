@@ -17,13 +17,8 @@ public interface ResourcesItemsService {
 	 * 增加资源单
 	 * */
 	public int addResourcesSingle(ResourcesSingle resourcesSingle);
-	public List<ResourcesItems> findResourcesItemsByQuery();
 	/**
 	 * 多条件分页查询s
 	 */
 	public List<ResourcesItems> queryResourcesItemsByFy(Paging pg);
-	/**
-	 * 查询符合要求的记录总数count(*)
-	 */
-	public int queryRowCount(Query query);
 }

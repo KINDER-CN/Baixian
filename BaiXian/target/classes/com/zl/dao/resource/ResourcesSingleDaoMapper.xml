@@ -9,7 +9,7 @@
 	 	<result column="rphone" property="rphone"/>
 	 	<result column="resourceState" property="resourceState"/>
 	 	<result column="uploadDate" property="uploadDate"/>
-	 	<association property="user" column="userID" javaType="User" select=""></association><!-- 有问题 -->
+	 	<association property="companyInfo" column="userID" javaType="companyInfo" select="com.zl.dao.user.CompanyInfoDao.findCompanyInfoByUserid"></association>
 	 </resultMap>
 	 <select id="findResourcesSingleById" resultMap="ResourcesSingles" parameterType="int">
 	 	select * from ResourcesSingle where id=#{singleId}

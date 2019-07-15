@@ -67,4 +67,7 @@
 				and userID=#{userID.id}
 			</if>
 	</update>
+	<select id="findCompanyInfoByUserid" resultType="companyInfo" parameterType="int">
+		select * from companyinfo where id=#{userID}
+	</select>
 </mapper>

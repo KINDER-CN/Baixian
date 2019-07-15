@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 
 import com.zl.dao.resource.ResourcesItemsDao;
 import com.zl.pojo.Paging;
-import com.zl.pojo.Query;
 import com.zl.pojo.resource.ResourcesItems;
 import com.zl.pojo.resource.ResourcesSingle;
 import com.zl.resouce.service.ResourcesItemsService;
@@ -26,23 +25,23 @@ public class ResourcesItemsServiceImpl implements ResourcesItemsService {
 		int result=rid.addResourcesSingle(resourcesSingle);
 		return result;
 	}
-	@Override
-	public List<ResourcesItems> findResourcesItemsByQuery() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	@Override
 	public List<ResourcesItems> queryResourcesItemsByFy(Paging pg) {
-		// TODO Auto-generated method stub
-		return null;
+		pg.setRowsCount(rid.findResourcesItemsRowCount());
+		if(pg.getPage()==null) {
+			pg.setPage(1);
+		}
+		if(pg.getPage()<1) {
+			pg.setPage(1);
+		}
+		if(pg.getPage()>pg.getPageCount() && pg.getPageCount()>0) {
+			pg.setPage(pg.getPageCount());
+		}
+		List<ResourcesItems> list=rid.findResourcesItemsByFy(pg);
+		return list;
 	}
 
-	@Override
-	public int queryRowCount(Query query) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
 
 	
 
