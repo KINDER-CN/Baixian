@@ -2,7 +2,7 @@
 <html>
 <head lang="en">
     <meta charset="UTF-8">
-    <title>基本会员-基本信息</title>
+    <title>升级会员-升级供应商-公司</title>
     <link rel="stylesheet" href="css/public.css"/>
     <link rel="stylesheet" href="css/page.css"/>
     <link rel="stylesheet" href="css/member.css"/>
@@ -15,23 +15,21 @@
     <!--[if lt IE 10]>
     <script src="js/html5shiv.min.js"></script>
     <![endif]-->
+    <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
 </head>
 <body>
 <!--网站顶部-->
-<div id="info">
-<div id="top" class="top">
+<div class="top">
     <div class="container">
-      <div class="top-left" > 
-      <span>欢迎来到超鲜网&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{userName}}</span>
-      <div class="top-left" v-show="flag">
+        <div class="top-left">
+            <p>欢迎来到超鲜网</p>
             <a href="login.html">请登录</a>
             <span>|</span>
-            <a href="/注册1.html">免费注册</a>
-           </div>
+            <a href="reg01.html">免费注册</a>
         </div>
         <div class="top-right">
             <ul>
-                <li><a href="userInfo.html">帮助中心&nbsp;&nbsp;|</a></li>
+                <li><a href="javascript:;">帮助中心&nbsp;&nbsp;|</a></li>
                 <li><a href="javascript:;">我的关注&nbsp;&nbsp;|</a></li>
                 <li><a href="javascript:;">联系客服&nbsp;&nbsp;|</a></li>
                 <li><a href="javascript:;">网站导航&nbsp;&nbsp;|</a></li>
@@ -277,30 +275,34 @@
                     </li>
                 </ul>
             </dt>
-            <dd><a class="selected" href="javascript:;">首页</a></dd>
+            <dd><a class="selected" href="index.html">首页</a></dd>
             <dd><a href="javascript:;">资源</a></dd>
             <dd><a href="javascript:;">采购</a></dd>
             <dd><a href="javascript:;">搜索</a></dd>
             <dd><a href="javascript:;">物流</a></dd>
             <dd><a href="javascript:;">行情</a></dd>
             <dd><a href="javascript:;">积分商城</a></dd>
-            <dd><a href="javascript:;">会员俱乐部</a></dd>
+            <dd><a href="userInfo.html">会员俱乐部</a></dd>
         </dl>
     </div>
 </nav>
 <!-- 内容主体区 -->
 <div class="content-main">
     <div class="container">
-        <!-- 面包屑导航 -->
+     <!-- 面包屑导航 -->
         <div class="bread-crumbs">
             <a href="javascript:;">首页</a>
             <span><i class="fa fa-angle-double-right"></i></span>
             <a href="javascript:;">会员中心</a>
             <span><i class="fa fa-angle-double-right"></i></span>
-            <a href="javascript:;" class="selected">基本信息</a>
+            <a href="javascript:;">升级会员</a>
+            <span><i class="fa fa-angle-double-right"></i></span>
+            <a href="javascript:;">升级供应商</a>
+            <span><i class="fa fa-angle-double-right"></i></span>
+            <a href="javascript:;" class="selected">个人</a>
         </div>
-         <!-- 会员左侧 -->
-         <div class="member-left">
+        <!-- 会员左侧 -->
+        <div class="member-left">
             <dl>
                 <dt>会员中心</dt>
                 <dd><a href="javascript:;" class="menuPro-first selected">基本信息</a></dd>
@@ -309,7 +311,17 @@
                 <dd><a href="javascript:;" class="menuPro-first">账户安全</a></dd>
                 <dd><a href="javascript:;" class="menuPro-first">我的积分</a></dd>
                 <dd><a href="javascript:;" class="menuPro-first">我的站内信<span style="color:#b0e78e;">(8)</span></a></dd>
-                <dd><a href="member-升级会员.html" class="menuPro-first">升级会员</a></dd>
+                <dd>
+                    <a href="javascript:;" class="menuPro-first selected"><i class="fa fa-plus-square"></i>升级会员</a>
+                    <div class="menuPro-second">
+                        <a href="javascript:;" class="selected"><i class="fa fa-angle-right"></i>升级供应商</a>
+                        <a href="javascript:;"><i class="fa fa-angle-right"></i>升级采购商</a>
+                        <a href="javascript:;"><i class="fa fa-angle-right"></i>升级承运方</a>
+                        <a href="javascript:;"><i class="fa fa-angle-right"></i>升级托运方</a>
+                        <a href="javascript:;"><i class="fa fa-angle-right"></i>提交成功</a>
+                        <a href="javascript:;"><i class="fa fa-angle-right"></i>其他状态页面</a>
+                    </div>
+                </dd>
                 <dt>供应商管理</dt>
                 <dd><a href="javascript:;" class="menuPro-first">我的资源单</a></dd>
                 <dd><a href="javascript:;" class="menuPro-first">我参与的竞标</a></dd>
@@ -333,107 +345,171 @@
             </dl>
          </div>
          <!-- 会员右侧 -->
+         <script type="text/javascript">
+	         $(function(){
+					$("#sh").click(function(){
+						$.ajax({
+							url: "companyInfo/addCompanyInfo",
+							type: "post",
+							dataType: "json",
+							data:{
+								"companyName":$("#companyName").val(),
+								"address":$("#address").val(),
+								"companyOwner":$("#companyOwner").val(),
+								"opeName":$("#opeName").val(),
+								"opeJob":$("#opeJob").val(),
+								"opePhone":$("#opePhone").val(),
+								"businessLicense":$("#businessLicense").val(),
+								"orgNo":$("#orgNo").val(),
+								"registrationPic":$("#registrationPic").val(),
+								"officePic":$("#officePic").val(),
+								"permitPic":$("#permitPic").val(),
+								"otherPic1":$("#otherPic1").val(),
+								"otherPic2":$("#otherPic2").val(),
+								"otherPic3":$("#otherPic3").val(),
+								"otherPic4":$("#otherPic4").val(),
+								"companyOwner":$("#companyOwner").val(),
+								"opeName":$("#opeName").val(),
+								"opeJob":$("#opeJob").val(),
+								"opePhone":$("#opePhone").val(),
+								"isno":$("#isno:checkbox()").val()
+							},
+							success:function(data){
+								if(data.true==1){
+									location.href="member-升级会员-提交成功.html";
+								}
+								if(data.e==0){
+									alert("请填写完整信息!");
+									/* location.href="member-升级会员-升级供应商-公司.html"; */
+								}
+							}
+						})
+					})
+				})
+         </script>
+         <form id="fm">
          <div class="member-right">
             <div class="member-main">
-                <!-- 基本资料 -->
                 <div class="member-column">
-                    <!-- 专属交易员 -->
-                    <div class="member-exclusive">
-                        <div class="exclusive-tit">我的专属交易员</div>
-                        <div class="exclusive-con">
-                            <div class="exclusive-area">华南区--张三</div>
-                            <div class="exclusive-tel">1345678910123</div>
-                            <a href="javascript:;" class="exclusive-qq"><img src="images/member-qq.png" alt=""></a>
-                        </div>
-                    </div>
-                    <div class="member-tit"><p>基本资料</p></div>
+                    <div class="member-tit"><p>升级供应商</p> <a href="javascript:;" style="color:#e42122;">说明：认证过其他级别后，已经提交的信息自动读取过来不需要填写第二次</a></div>
                      <div class="member-con">
+                        <div class="member-subtit">基本信息填写</div>
                         <div class="controls">
-                            <p><span>*</span>用户名：</p>
-                            <div class="basic-name">{{userName}}</div>
+                            <p><span>*</span>公司名称：</p>
+                            <input type="text" class="input03 w450" id="companyName">
                         </div>
                         <div class="controls">
-                            <p>昵称：</p>
-                            <input type="text" class="input03 w250" v-model="user.nickName" value="user.nickName">
+                            <p><span>*</span>所在地：</p>
+                            <select class="w146">
+                                <option value="0">请选择</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                            </select>
+                            <select class="w146">
+                                <option value="0">请选择</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                            </select>
+                            <select class="w146">
+                                <option value="0">请选择</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                            </select>
                         </div>
                         <div class="controls">
-                            <p>头像：</p>
+                            <p><span>*</span>详细地址：</p>
+                            <input type="text" class="input03 w450" id="address">
+                        </div>
+                        <div class="controls">
+                            <p><span>*</span>证件上传：</p>
                             <div class="upload-controls">
-                                <div class="upload-img head-img"><img src="images/upload-img01.png" alt="" v-show="imgflag"><img :src="url" alt=""></div>
-                                <input type="file" @change="handlerUpload($event)" id="userPic" multiple="multiple">
-                                <input type="hidden" value="user.avatar" v-model="user.avatar">
+                                <div class="upload-img sfz-img"><img src="images/upload-img02.png" alt=""></div>
+                                <input type="button" value="点击上传营业执照" class="upload-btn w148" id="businessLicense">
                             </div>
-                            <div class="tip">
-                                <em>1、上传文件要求为清晰照片；尺寸为正方形</em>
-                                <em>2、照片要求格式为jpg、jpeg、gif或png，大小不要超过3M。</em>
+                            <div class="upload-controls">
+                                <div class="upload-img sfz-img"><img src="images/upload-img02.png" alt=""></div>
+                                <input type="button" value="组织机构代码" class="upload-btn w148" id="orgNo">
+                            </div>
+                             <div class="upload-controls">
+                                <div class="upload-img sfz-img"><img src="images/upload-img02.png" alt=""></div>
+                                <input type="button" value="税务登记证" class="upload-btn w148" id="registrationPic">
+                            </div>
+                             <div class="upload-controls">
+                                <div class="upload-img sfz-img"><img src="images/upload-img02.png" alt=""></div>
+                                <input type="button" value="办公场所图片" class="upload-btn w148" id="officePic">
+                            </div>
+                             <div class="upload-controls">
+                                <div class="upload-img sfz-img"><img src="images/upload-img02.png" alt=""></div>
+                                <input type="button" value="食品流通许可证" class="upload-btn w148" id="permitPic">
+                            </div>
+                             <div class="member-tips">需加盖公章、清晰无涂抹的jpg格式文件(文件大小最大3M。也支持gif/png格式，但建议转换为jpg后再上传)
+                             </div>
+                        </div>
+                        <div class="controls">
+                            <p><span>*</span>其他证件上传：</p>
+                            <div class="upload-controls">
+                                <div class="upload-img sfz-img"><img src="images/upload-img02.png" alt=""></div>
+                                <input type="button" value="上传图片" class="upload-btn w148" id="otherPic1">
+                            </div>
+                            <div class="upload-controls">
+                                <div class="upload-img sfz-img"><img src="images/upload-img02.png" alt=""></div>
+                                <input type="button" value="上传图片" class="upload-btn w148" id="otherPic2">
+                            </div>
+                             <div class="upload-controls">
+                                <div class="upload-img sfz-img"><img src="images/upload-img02.png" alt=""></div>
+                                <input type="button" value="上传图片" class="upload-btn w148" id="otherPic3">
+                            </div>
+                             <div class="upload-controls">
+                                <div class="upload-img sfz-img"><img src="images/upload-img02.png" alt=""></div>
+                                <input type="button" value="上传图片" class="upload-btn w148" id="otherPic4">
+                            </div>
+                             <div class="upload-controls">
+                                <div class="upload-img sfz-img"><img src="images/upload-img02.png" alt=""></div>
+                                <input type="button" value="上传图片" class="upload-btn w148">
                             </div>
                         </div>
                         <div class="controls">
-                            <p>手机号：</p>
-                            <div class="basic-tel"><span v-show="!inp">{{user.phone}}</span>
-                            <input type="text" value="user.phone" v-model="user.phone" class="input03 w250" v-show="inp">
-                            </div>
-                            <a class="change-tel" href="javascript:;" @click="changeinpt">更改手机</a>
+                            <p><span>*</span>企业法人姓名：</p>
+                            <input type="text" class="input03 w250" id="companyOwner">
+                        </div>
+                        <div class="member-subtit">授权运营者信息填写</div>
+                        <div class="controls">
+                            <p><span>*</span>运营者姓名：</p>
+                            <input type="text" class="input03 w250" id="opeName">
                         </div>
                         <div class="controls">
-                            <p>邮箱：</p>
-                            <input type="text" class="input03 w250" value="user.email" v-model="user.email">
+                            <p><span>*</span>运营者职务：</p>
+                            <input type="text" class="input03 w250" id="opeJob">
                         </div>
-                         <div  class="controls">
-                             <p>地区：</p>
-                           <select id="b" @change="findCity($event)" style="width: 150px" >
-                            	<option v-bind:value="0">请选择<option/>
-                            	<option v-model="pro.id"  v-for="pro in proList" v-bind:value="pro.id" :selected="pro.id==user.province">{{pro.proname}}<option/>
-                            </select>
-                           <select @change="findDis($event)" style="width: 150px">
-                            	<option  v-bind:value="0">请选择<option/>
-                            	<option v-model="c.id" v-for="c in cityList" v-bind:value="c.id" :selected="c.id==user.city">{{c.cityName}}<option/>
-                            </select>
-                           <select @change="setDis($event)" style="width: 150px">
-                            	<option  v-bind:value="0">请选择<option/>
-                            	<option v-model="d.id" v-for="d in disList" v-bind:value="d.id" :selected="d.id==user.district">{{d.disName}}<option/>
-                            </select>
-                        </div> -->
                         <div class="controls">
-                            <p>详细地址：</p>
-                            <input type="text" class="input03 w450" value="user.address" v-model="user.address">
+                            <p><span>*</span>运营者联系方式：</p>
+                            <input type="text" class="input03 w250" id="opePhone">
                         </div>
-                        <input type="button" value="保存" class="btn01 submit" @click="updateuser">
-                     </div>
-                </div>
-                <!-- 银行账户信息 -->
-                <div class="member-column">
-                    <div class="member-tit">
-                        <p>银行账户信息</p>
-                        <a href="javascript:;">为什么需要填正确的银行帐号信息？​</a>
-                    </div>
-                     <div class="member-con">
-                            <div class="controls">
-                            <input type="hidden" v-model="bank.id" value="bank.id">
-                                <p>户名：</p>
-                                <input type="text" class="input03 w250" v-model="bank.account" value="bank.account">
+                        <div class="controls">
+                            <div class="member-tips">授权运营书：请下载授权运营书按要求填写表格后，上传加盖公章的扫描件支持.jpg .jpeg .bmp .gif格式照片，大小不超过2M。
                             </div>
-                            <div class="controls">
-                                <p>开户行：</p>
-                                <input type="text" class="input03 w250" v-model="bank.bank" value="bank.bank">
+                            <div class="warrant-btn">
+                                 <a href="javascript:;" class="btn01 w125">下载授权书</a>
+                                 <a href="javascript:;" class="btn01 w125">上传授权书</a>
                             </div>
-                            <div class="controls">
-                                <p>银行账号：</p>
-                                <input type="text" class="input03 w250" v-model="bank.accountNo" value="bank.accountNo">
+                        </div>
+                        <div class="controls">
+                            <div class="provision">
+                                <input type="checkbox" name="isno" id="isno" value="yes">
+                                <div class="provision-tip">
+                                    我已阅读并统一《<a href="javascript:;">供应商注册协议</a>》
+                                </div>
                             </div>
-                            <div class="controls">
-                                <div class="bound-tel">当前绑定手机：<span>{{user.phone}}</span></div>
-                                <input type="button" value="获取验证码" class="btn06 w125">
-                            </div>
-                            <div class="controls">
-                                <p>验证码：</p>
-                                <input type="text" class="input03 w250">
-                            </div>
-                            <input type="button" value="提交修改" class="btn01 submit" @click="updateBank">
+                        </div>
+                        <input type="button" value="提交审核" class="btn01 submit w155" id="sh">
                      </div>
                 </div>
             </div>
          </div>
+         </form>
     </div>
 </div>
 <!--网站底部-->
@@ -486,14 +562,9 @@
         <p>Copyright <i class="fa fa-copyright"></i> 超鲜网 粤ICP备 13013915号-3  ICP证：粤B2-201401448</p>
     </div>
 </footer>
-</div>
 <script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
 <script type="text/javascript" src="js/global.js"></script>
 <script type="text/javascript" src="js/jquery.accordion.js"></script>
-<script type="text/javascript" src="js/es5-shim.js"></script>
 <script type="text/javascript" src="js/select.js"></script>
-<script type="text/javascript" src="js/vuejs-2.5.16.js"></script>
-<script type="text/javascript" src="js/axios-0.18.0.js"></script>
-<script type="text/javascript" src="js/userinfo.js"></script>
 </body>
 </html>

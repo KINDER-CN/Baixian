@@ -3,6 +3,8 @@ package com.zl.user.controller;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.zl.pojo.user.Confirm;
+import com.zl.pojo.user.User;
 import com.zl.user.service.ConfirmService;
 
 /**
@@ -33,16 +36,31 @@ public class ConfirmController {
 		mv.setViewName("addConfirm");
 		return mv;
 	}
+	
+	@RequestMapping("/querySession")
+	@ResponseBody
+	public Map<String,Object> querySession(HttpSession session){
+		Map<String,Object> map = new HashMap<>();
+		User u = (User) session.getAttribute("user");
+		map.put("u", u);
+		return map;
+	}
 		
 	//添加
 	@RequestMapping("/addConfirm")
 	@ResponseBody
-	public Map<String,Object> addConfirm(Confirm confirm) {
+	public Map<String,Object> addConfirm(Confirm confirm,String isno) {
 		System.out.println("进入个人添加控制器.................");
 		Map<String,Object> map = new HashMap<>();
-		cs.addConfirm(confirm);
-		map.put("true", 1); //状态码
-		map.put("cg", "成功"); //结果
+		if("yes".equals(isno) && confirm.getFirmName()!=null && !"".equals(confirm.getFirmName()) && confirm.getAddress()!=null && !"".equals(confirm.getAddress()) && confirm.getFirmno()!=null && !"".equals(confirm.getFirmno()) &&confirm.getMobileNumber()!=null && !"".equals(confirm.getMobileNumber()) && confirm.getEmail()!=null && !"".equals(confirm.getEmail())) {
+			System.out.println("111111111111111");
+			cs.addConfirm(confirm);
+			map.put("true", 1); //状态码
+			map.put("cg", "成功"); //结果
+		}else {
+			System.out.println("00000000000000");
+			map.put("e", 0);
+		}
 		return map; 
 	} 
 	
@@ -53,8 +71,15 @@ public class ConfirmController {
 		System.out.println("进入个人id查询控制器.................");
 		Map<String,Object> map = new HashMap<>();
 		Confirm confirm = cs.findConfirmById(id);
-		map.put("true", 1);//状态码
-		map.put("cg", "成功"); //结果
+		if(confirm.getPersonAudit()==2) {
+			map.put("true", 2);//状态码
+		}
+		if(confirm.getPersonAudit()==1) {
+			map.put("deng", 1);
+		}
+		else {
+			map.put("err", 0);
+		}
 		map.put("data",confirm);
 		return map;
 	}
