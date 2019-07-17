@@ -5,7 +5,6 @@ new Vue({
 		flag:true,
 		inp:false,
 		url:"",
-		sel:"",
 		imgflag:true,
 			pro:{
 				id:"",
