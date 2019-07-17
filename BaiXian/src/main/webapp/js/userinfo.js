@@ -5,6 +5,7 @@ new Vue({
 		flag:true,
 		inp:false,
 		url:"",
+		sel:"",
 		imgflag:true,
 			pro:{
 				id:"",
@@ -15,6 +16,11 @@ new Vue({
 				id:"",
 				cityno:"",
 				cityName:""
+			},
+			dis:{
+				id:"",
+				disno:"",
+				disName:""
 			},
 			user:{
 				id:"",
@@ -36,6 +42,7 @@ new Vue({
 			},
 			proList:[],
 			cityList:[],
+			disList:[],
 	},
 	methods:{
 		index:function(){
@@ -48,7 +55,8 @@ new Vue({
 					_this.url=response.data.user.avatar;
 					if(response.data.user.avatar!=null){
 						_this.imgflag=false;
-						alert(response.data.user.avatar);
+						_this.findC(_this.user.province);
+						_this.findD(_this.user.city);
 					}
 					console.log(response);
 					_this.flag=false;
@@ -71,9 +79,22 @@ new Vue({
                     console.log(error);
              })
 		},
-		findCity:function(proid){
+		findCity:function(event){
 			var _this=this;
-			axios.get("/BaiXian/city/city",{params:{proId:proid}})
+			axios.get("/BaiXian/city/city",{params:{proId:event.target.value}})
+			.then(function(response){
+				_this.cityList=response.data.city;
+				_this.user.province=event.target.value;
+				_this.disList=null,
+				console.log(response);
+			})
+			.catch(function (error) {
+                    console.log(error);
+             })
+		},
+		findC:function(id){
+			var _this=this;
+			axios.get("/BaiXian/city/city",{params:{proId:id}})
 			.then(function(response){
 				_this.cityList=response.data.city;
 				console.log(response);
@@ -81,6 +102,32 @@ new Vue({
 			.catch(function (error) {
                     console.log(error);
              })
+		},
+		findDis:function(event){
+			var _this=this;
+			axios.get("/BaiXian/city/dis",{params:{cityId:event.target.value}})
+			.then(function(response){
+				_this.disList=response.data.district;
+				_this.user.city=event.target.value;
+				console.log(response);
+			})
+			.catch(function (error) {
+                    console.log(error);
+             })
+		},
+		findD:function(id){
+			var _this=this;
+			axios.get("/BaiXian/city/dis",{params:{cityId:id}})
+			.then(function(response){
+				_this.disList=response.data.district;
+				console.log(response);
+			})
+			.catch(function (error) {
+                    console.log(error);
+             })
+			},
+		setDis:function(event){
+			this.user.district=event.target.value;
 		},
 		changeinpt:function(){
 			if(this.inp){

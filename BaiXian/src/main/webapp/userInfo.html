@@ -379,24 +379,21 @@
                             <p>邮箱：</p>
                             <input type="text" class="input03 w250" value="user.email" v-model="user.email">
                         </div>
-                        <div id="diqu" class="controls">
+                         <div  class="controls">
                              <p>地区：</p>
-                           <select @change="findCity($event)" v-model="pro.id" class="selectpicker" data-width="150" >
-                                <option value="0">请选择省</option>
-                                <option v-for="pro in proList" value="pro.id" v-bind:value="pro.id">
-								    {{ pro.proname}}
-								 </option>
+                           <select id="b" @change="findCity($event)" style="width: 150px" >
+                            	<option v-bind:value="0">请选择<option/>
+                            	<option v-model="pro.id"  v-for="pro in proList" v-bind:value="pro.id" :selected="pro.id==user.province">{{pro.proname}}<option/>
                             </select>
-                           <select class="selectpicker" data-width="150" @change="findDis(city.id)" v->
-                                <option value="0">请选择市</option>
-                                  <option v-for="city in cityList" v-bind:value="cityList.id">
-                                     {{ city.cityName}}
-								  </option>
+                           <select @change="findDis($event)" style="width: 150px">
+                            	<option  v-bind:value="0">请选择<option/>
+                            	<option v-model="c.id" v-for="c in cityList" v-bind:value="c.id" :selected="c.id==user.city">{{c.cityName}}<option/>
                             </select>
-                           <select class="selectpicker" data-width="150">
-                                <option value="0">请选择区</option>
+                           <select @change="setDis($event)" style="width: 150px">
+                            	<option  v-bind:value="0">请选择<option/>
+                            	<option v-model="d.id" v-for="d in disList" v-bind:value="d.id" :selected="d.id==user.district">{{d.disName}}<option/>
                             </select>
-                        </div>
+                        </div> -->
                         <div class="controls">
                             <p>详细地址：</p>
                             <input type="text" class="input03 w450" value="user.address" v-model="user.address">

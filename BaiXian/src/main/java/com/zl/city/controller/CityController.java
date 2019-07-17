@@ -6,6 +6,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -37,6 +38,7 @@ public class CityController {
 	@RequestMapping("/city")
 	@ResponseBody
 	public Map<String,Object> findCityByProId(Integer proId){
+		System.out.println(proId+"...................--------------------------==============++++++++");
 		Map<String,Object> resut=new HashMap<String,Object>();
 		List<City> city = cs.findCityByProId(proId);
 		resut.put("city", city);
@@ -48,9 +50,9 @@ public class CityController {
 	 */
 	@RequestMapping("/dis")
 	@ResponseBody
-	public Map<String,Object> finDistrictByCityId(Integer dis){
+	public Map<String,Object> finDistrictByCityId(Integer cityId){
 		Map<String,Object> resut=new HashMap<String,Object>();
-		List<District> district = cs.findDistrictByCityId(dis);
+		List<District> district = cs.findDistrictByCityId(cityId);
 		resut.put("district", district);
 		return resut;
 	}
