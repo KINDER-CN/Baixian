@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zl.dao.user.BankInfoDao">
+	<!-- 新增银行卡信息 -->
+	<insert id="addBankInfo" parameterType="bank">
+		insert into bank_account_info(userID,account,bank,accountno)
+			values (#{userID},#{account},#{bank},#{accountno})
+	</insert>
+	<!-- 查找银行账户信息 -->
+	<select id="findBankInfoByUserId" parameterType="int" resultType="bank">
+		select * from bank_account_info where userid=#{userid}
+	</select>
+	<!-- 修改银行卡信息 -->
+	<update id="updateBankInfo" parameterType="bank">
+		update bank_account_info set account=#{account},bank=#{bank},accountno=#{accountNo} where userid=#{userId}
+	</update>
+</mapper>

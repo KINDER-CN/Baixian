@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 public class ResourcesItems {
 	private Integer id;			//主键id
 	private Integer rNo;		//资源物品单No
-	private ClassThree classThree;		//(三级类)产品类别
+	private String threeId;		//(三级类)产品类别
 	private String brand;		//品牌
 	private String product;		//产品名称
 	private String origin;		//产地
@@ -34,12 +34,11 @@ public class ResourcesItems {
 	public void setrNo(Integer rNo) {
 		this.rNo = rNo;
 	}
-	
-	public ClassThree getClassThree() {
-		return classThree;
+	public String getThreeId() {
+		return threeId;
 	}
-	public void setClassThree(ClassThree classThree) {
-		this.classThree = classThree;
+	public void setThreeId(String threeId) {
+		this.threeId = threeId;
 	}
 	public String getBrand() {
 		return brand;

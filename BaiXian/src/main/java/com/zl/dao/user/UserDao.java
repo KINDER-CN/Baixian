@@ -12,4 +12,12 @@ public interface UserDao {
 	 * 注册
 	 */
 	public int registered(User user);
+	/**
+	 * 修改会员信息
+	 */
+	public int updateUser(User user);
+	/**
+	 * 查找用户信息
+	 */
+	public User queryUserByUserId(Integer id);
 }

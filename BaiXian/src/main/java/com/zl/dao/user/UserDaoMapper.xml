@@ -6,12 +6,17 @@
 	<select id="login" parameterType="user" resultType="user">
 		select * from user where username=#{userName} and password=#{passWord}
 	</select>
+	<!-- 配置注册 -->
 	<insert id="registered" parameterType="user">
-		insert into user(userno,username,password,phone)
-			values (#{userno},#{userName},#{passWord},#{phone})
+		insert into user(userno,username,password,phone,role,companyOrPerson)
+			values (#{userno},#{userName},#{passWord},#{phone},#{role},#{companyOrPerson})
 	</insert>
-	
+	<!-- 通过id查找用户信息 -->
 	<select id="queryUserByUserId" parameterType="int" resultType="user">
 		select * from user where id=#{id}
 	</select>
+	<!-- 修改会员信息 -->
+	<update id="updateUser" parameterType="user">
+		update user set nickname=#{nickName},avatar=#{avatar},email=#{email},province=#{province},city=#{city},district=#{district},address=#{address} where id=#{id}
+	</update>
 </mapper>

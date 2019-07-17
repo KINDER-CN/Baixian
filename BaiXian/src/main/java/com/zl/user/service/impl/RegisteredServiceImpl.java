@@ -1,5 +1,6 @@
 package com.zl.user.service.impl;
 
+import java.util.Date;
 import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,8 @@ public class RegisteredServiceImpl implements RegisteredService {
 		user.setUserno(userNo);
 		//给用户密码加密
 		user.setPassWord(MD5Util.MD5(user.getPassWord()));
+		//添加注册时间
+		user.setRegisterDate(new Date());
 		System.out.println(user);
 		int line=ud.registered(user);
 		return line;

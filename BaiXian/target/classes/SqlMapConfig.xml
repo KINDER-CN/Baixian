@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8" ?> 
+﻿<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" 
 "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
@@ -20,6 +20,10 @@
 		<typeAlias type="com.zl.pojo.resource.ClassOne" alias="ClassOne"/>
 		<typeAlias type="com.zl.pojo.resource.ClassTwo" alias="ClassTwo"/>
 		<typeAlias type="com.zl.pojo.resource.ClassThree" alias="ClassThree"/>
+		<typeAlias type="com.zl.pojo.city.Province" alias="province"/>
+		<typeAlias type="com.zl.pojo.city.City" alias="city"/>
+		<typeAlias type="com.zl.pojo.city.District" alias="district"/>
+		<typeAlias type="com.zl.pojo.user.BankAccountInfo" alias="bank"/>
 	</typeAliases>
 
 	<!-- 引用mapper映射文件 -->
@@ -34,5 +38,7 @@
 		<mapper resource="com/zl/dao/resource/ClassThreeDaoMapper.xml"/>
 		<mapper resource="com/zl/dao/resource/ResourcesItemsDaoMapper.xml"/>
 		<mapper resource="com/zl/dao/resource/ResourcesSingleDaoMapper.xml"/>
+		<mapper resource="com/zl/dao/user/BankInfoDaoMapper.xml"/>
+		<mapper resource="com/zl/dao/city/CityDaoMapper.xml"/>
 	</mappers>
 </configuration> 

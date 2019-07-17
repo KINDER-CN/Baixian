@@ -15,8 +15,8 @@
 	 </select>
 	 
 	 <!-- 资源物品单分页查询 -->
-	 <select id="findResourcesItemsByFy" parameterType="paging" resultMap="ResourcesItem">
-	 	select * from ResourcesItems limit #{startRows}, #{rows}
+	 <select id="findResourcesItemsByFy" parameterType="Paging" resultMap="ResourcesItem">
+	 	select * from ResourcesItems limit (#{page}-1)*#{rows}, #{rows}
 	 </select>
 	 <!-- 资源物品单级联查询资源单ResourcesSingle和三级分类表class_three -->
 	 <resultMap type="ResourcesItems" id="ResourcesItem">
