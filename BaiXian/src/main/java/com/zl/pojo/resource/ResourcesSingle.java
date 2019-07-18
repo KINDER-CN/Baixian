@@ -5,6 +5,7 @@ import java.util.Date;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+import com.zl.pojo.user.CompanyInfo;
 import com.zl.pojo.user.User;
 //资源单
 @Component
@@ -12,7 +13,7 @@ import com.zl.pojo.user.User;
 public class ResourcesSingle {
 	private Integer id; 		//主键id
 	private String singleNo; 	//资源单no
-	private User user;			//用户id   外键关联userid
+	private CompanyInfo companyInfo;			//用户id   外键关联userid
 	private String rphone;		//联系电话
 	private String resourceState;//资源单说明
 	private Date uploadDate;	//上传日期
@@ -46,11 +47,12 @@ public class ResourcesSingle {
 	public void setUploadDate(Date uploadDate) {
 		this.uploadDate = uploadDate;
 	}
-	public User getUser() {
-		return user;
+	public CompanyInfo getCompanyInfo() {
+		return companyInfo;
 	}
-	public void setUser(User user) {
-		this.user = user;
+	public void setCompanyInfo(CompanyInfo companyInfo) {
+		this.companyInfo = companyInfo;
 	}
+	
 	
 }

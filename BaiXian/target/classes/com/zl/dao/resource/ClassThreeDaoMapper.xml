@@ -7,7 +7,7 @@
 	 	<id column="id" property="id"/>
 	 	<result column="threeClassNo" property="threeClassNo"/>
 	 	<result column="threeClassNnam" property="threeClassNnam"/>
-	 	<association property="classThree" column="twoid" javaType="ClassThree" select="com.zl.dao.resource.ClassTwoDao.findClassTwoById"></association>
+	 	<association property="classTwo" column="twoid" javaType="ClassTwo" select="com.zl.dao.resource.ClassTwoDao.findClassTwoById"></association>
 	 </resultMap>
 	 <select id="findClassThreeById" resultMap="ClassThrees" parameterType="int">
 	 	select * from class_three where id=#{threeId}

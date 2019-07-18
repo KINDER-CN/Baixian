@@ -1,8 +1,11 @@
 package com.zl.test;
 
+import java.util.List;
+
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import com.zl.pojo.Paging;
 import com.zl.pojo.resource.ResourcesItems;
 import com.zl.pojo.resource.ResourcesSingle;
 import com.zl.resouce.service.ResourcesItemsService;
@@ -19,5 +22,6 @@ public static void main(String[] args) {
 	ris.addResourcesSingle(rs);
 	ris.addResourcesItems(ri);
 	System.out.println("wowowow");
+	
 }
 }
