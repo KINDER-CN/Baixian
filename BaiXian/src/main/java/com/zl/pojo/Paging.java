@@ -1,9 +1,14 @@
 package com.zl.pojo;
 
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
+
+@Component
+@Scope("prototype")
 public class Paging {
 	//分页查询sql语句select * from talblename limit startRows,rows
 		private Integer page;//当前请求页码
-		private Integer rows=3;//每页显示条数
+		private Integer rows=5;//每页显示条数
 		private Integer rowsCount;//查询符合条件总记录条数
 		private Integer pageCount;//总页码数
 		private Integer startRows;//起始条数

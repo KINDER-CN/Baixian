@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Component;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.zl.pojo.user.User;
 @Component
 @Scope("prototype")
@@ -28,12 +29,14 @@ public class Purchaseorder {
   private  Integer district;        //区
   private  String  address;         //详细地址（收货地址）
   @DateTimeFormat(pattern="yyyy-MM-dd")
+  @JsonFormat(pattern="yyyy-MM-dd")
   private  Date    abortDate;       //采购截止日期
   private  String  contacter;       //联系人
   private  String  companyName;     //公司名
   private  String  phone;           //手机号
   private  Integer trading;         //交易状态0/1/2
   @DateTimeFormat(pattern="yyyy-MM-dd")
+  @JsonFormat(pattern="yyyy-MM-dd")
   private  Date    uploadDate;      //上传日期
   private  User    user ;           //user的实体类
   

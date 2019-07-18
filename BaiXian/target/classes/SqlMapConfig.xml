@@ -24,6 +24,7 @@
 		<typeAlias type="com.zl.pojo.city.City" alias="city"/>
 		<typeAlias type="com.zl.pojo.city.District" alias="district"/>
 		<typeAlias type="com.zl.pojo.user.BankAccountInfo" alias="bank"/>
+		<typeAlias type="com.zl.pojo.Query" alias="query"/>
 	</typeAliases>
 
 	<!-- 引用mapper映射文件 -->
@@ -31,7 +32,7 @@
 		<mapper resource="com/zl/dao/user/CompanyInfoDaoMapper.xml" />
 	    <mapper resource="com/zl/dao/user/ConfirmDaoMapper.xml" />
 		<mapper resource="com/zl/dao/user/OperatingDaoMapper.xml" />
-		<mapper resource="com/zl/dao/procurement/PurchaseorderDaoMapper.xml" />
+	    <mapper resource="com/zl/dao/procurement/PurchaseorderDaoMapper.xml" />
 		<mapper resource="com/zl/dao/user/UserDaoMapper.xml" />
 		<mapper resource="com/zl/dao/resource/ClassOneDaoMapper.xml"/>
 		<mapper resource="com/zl/dao/resource/ClassTwoDaoMapper.xml"/>

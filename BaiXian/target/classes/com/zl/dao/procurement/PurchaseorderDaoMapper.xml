@@ -9,4 +9,69 @@
 	 	values 
 	 (#{id},#{purchaseNo},#{user.userid},#{purchaseName},#{purchasingItems},#{origin},#{specifications},#{level},#{warehouse},#{cargo},#{price},#{purchastate},#{payment},#{invoice},#{province},#{city},#{district},#{address},#{abortDate},#{contacter},#{companyName},#{phone},#{trading},#{uploadDate})
 	 </insert>
+	 
+	 <select id="queryPurchaseorderById" parameterType="int"
+		resultType="purchaseorder">
+		select * from purchaseorder where id=#{id}
+	</select>
+
+
+	<select id="rowsCount" parameterType="query" resultType="int">
+		select count(*) from purchaseorder
+		<where>
+			<if test="purchaseName!=null and purchaseName!=''">
+				and purchaseName like concat('%',#{purchaseName},'%')
+			</if>
+			<if test="purchasingItems!=null and purchasingItems!=''">
+				and purchasingItems like concat('%',#{purchasingItems},'%')
+			</if>
+			<if test="origin!=null and origin!=''">
+				and origin=#{origin}
+			</if>
+			<if test="specifications!=null">
+				and specifications=#{specifications}
+			</if>
+			<if test="level!=null and level!=''">
+				and level=#{level}
+			</if>
+			<if test="price!=null and price!=''">
+				and price=#{price}
+			</if>
+			<if test="abortDate!=null">
+				and abortDate<![CDATA[<]]>#{abortDate}
+			</if>
+		</where>
+	</select>
+
+
+	<select id="queryPurchaseorderByPaging" parameterType="paging"
+		resultType="purchaseorder">
+		select * from purchaseorder
+		<where>
+			<if test="query!=null">
+				<if test="query.purchaseName!=null and query.purchaseName!=''">
+					and purchaseName like concat('%',#{query.purchaseName},'%')
+				</if>
+				<if test="query.purchasingItems!=null and query.purchasingItems!=''">
+					and purchasingItems like concat('%',#{query.purchasingItems},'%')
+				</if>
+				<if test="query.origin!=null and query.origin!=''">
+					and origin=#{query.origin}
+				</if>
+				<if test="query.specifications!=null">
+					and specifications=#{query.specifications}
+				</if>
+				<if test="query.level!=null and query.level!=''">
+					and level=#{query.level}
+				</if>
+				<if test="query.price!=null and query.price!=''">
+					and price=#{query.price}
+				</if>
+				<if test="query.abortDate!=null">
+					and abortDate<![CDATA[<]]>#{query.abortDate}
+				</if>
+			</if>
+		</where>
+		limit #{startRows},#{rows}
+	</select>
 </mapper>	
