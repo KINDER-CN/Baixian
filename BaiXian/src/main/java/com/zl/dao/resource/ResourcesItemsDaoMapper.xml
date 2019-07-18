@@ -7,7 +7,7 @@
 	 	insert into ResourcesItems
 	 	 (rNo,threeId,brand,product,origin,uploadDate,specifications,amount,rprice,rcurrency,rwarehouse,rCargo,note,singleId)
 	 		values 
-	 		(#{rNo},#{threeId},#{brand},#{product},#{origin},#{uploadDate},#{specifications},#{amount},#{rprice},#{rcurrency},#{rwarehouse},#{rCargo},#{note},#{resourcesSingle.id})
+	 		(#{rNo},#{classThree.id},#{brand},#{product},#{origin},#{uploadDate},#{specifications},#{amount},#{rprice},#{rcurrency},#{rwarehouse},#{rCargo},#{note},#{resourcesSingle.id})
 	 </insert>
 	 <!-- 查询资源单总条数 -->
 	 <select id="findResourcesItemsRowCount" resultType="int">
